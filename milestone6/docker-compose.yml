@@ -1,0 +1,17 @@
+version: '2'
+services:
+  mysql:
+    build: .
+    container_name: m6_db
+    restart: always
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    environment:
+     MYSQL_ROOT_PASSWORD: mypassword
+     MYSQL_DATABASE: m6
+     MYSQL_USER: dev
+     MYSQL_PASSWORD: mypassword
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+      - ./data:/tmp
